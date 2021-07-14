@@ -1,44 +1,49 @@
+from random import randint
+
+
 user_1_score = 0
-user_2_score = 0
+computer_score = 0
 turns = 0
-while turns < 3:
-    user_1 = input('user 1 turn: ')
-    user_2 = input('user 2 turn: ')
+moves = ['r', 'p', 's']
+
+
+while turns < 5:
     turns += 1
-    if user_1 == 'r' and user_2 == 'r':
+    computer = moves[randint(0, 2)]
+    user_1 = input('rock, paper or scissors?')
+    if user_1 == computer:
         print('it\'s a draw')
         continue
-    elif user_1 == 'r' and user_2 == 'p':
-        print('user 2 wins')
-        user_2_score += 1
-        continue
-    elif user_1 == 'r' and user_2 == 's':
-        print('user 1 wins')
-        user_1_score += 1
-        continue
-    elif user_1 == 'p' and user_2 == 'r':
-        print('user 1 wins')
-        user_1_score += 1
-        continue
-    elif user_1 == 'p' and user_2 == 'p':
-        print('it\'s a draw')
-        continue
-    elif user_1 == 'p' and user_2 == 's':
-        print('user 2 wins')
-        user_2_score += 1
-        continue
-    elif user_1 == 's' and user_2 == 'r':
-        print('user 2 wins')
-        user_2_score += 1
-        continue
-    elif user_1 == 's' and user_2 == 'p':
-        print('user 1 wins')
-        user_1_score += 1
-        continue
-    elif user_1 == 's' and user_2 == 's':
-        print('it\'s a draw')
-        continue
-    elif user_1 or user_2 != 'r' or 'p' or 's':
+    elif user_1 == 'r':
+        if computer == 'p':
+            print('computer chose paper and wins')
+            computer_score += 1
+        else:
+            print('user wins coz comps chose scissors')
+            user_1_score += 1
+    elif user_1 == 'p':
+        if computer == 's':
+            print('computer chose scissor and wins')
+            computer_score += 1
+        else:
+            print('user wins coz comps chose rock')
+            user_1_score += 1
+    elif user_1 == 's':
+        if computer == 'r':
+            computer_score += 1
+            print('computer chose rock and wins')
+        else:
+            print('user wins coz comps chose paper')
+            user_1_score += 1
+    elif user_1 or computer != 'r' or 'p' or 's':
         print('invalid move')
-print(f'user 1 score is {user_1_score}')
-print(f'user 2 score is {user_2_score}')
+
+
+print(f'Your score is {user_1_score}')
+print(f'computer score is {computer_score}')
+if user_1_score > computer_score:
+    print('YOU WON!!!!')
+elif user_1_score == computer_score:
+    print('IT\'S A DRAW')
+else:
+    print('SORRY YOU LOST')
